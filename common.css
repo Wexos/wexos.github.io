@@ -1,0 +1,32 @@
+.TextBoxLabel {
+    color: #555;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.TextBox {
+    width: 80%;
+    height: 40px;
+    color: #444;
+    font-size: 32px;
+    border: 2px solid;
+    border-color: #AAA;
+    border-radius: 10px;    
+    outline: none;
+}
+
+.TextBox:read-only {
+    background-color: #DDD;
+}
+
+.TextBox:disabled {
+    background-color: #BBB;
+}
+
+.TextBox:focus {
+    border-color: #66F;
+}
+
+.Error {
+    background-color: #F77;
+}

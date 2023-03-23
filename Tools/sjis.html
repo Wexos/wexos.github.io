@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="../common.css" />
+    <script src="sjis.js"></script>
+
+</head>
+<body>
+
+    <h1>SJIS Decoder</h1>
+
+    <p>
+        This is a simple Shift-JIS decoder which can convert
+        from SJIS-encoded hex bytes to a string.
+    </p>
+
+    <p>
+        The input must consist of hex bytes, which may be seperated by whitespace.
+        Each byte must be padded, so "1" for instance is not a valid input.
+    </p>
+
+    <div>
+        <div class="TextBoxLabel">
+            Input
+        </div>
+
+        <input type="text" class="TextBox" id="tbInput" onchange="convertSjis();" onKeypress="convertSjis();" onPaste="convertSjis();" onInput="convertSjis();" />
+    </div>
+
+    <br>
+    <br>
+
+    <div>
+        <div class="TextBoxLabel">
+            Output
+        </div>
+
+        <input type="text" class="TextBox" id="tbOutput" readonly />
+    </div>
+    
+</body>
+</html>

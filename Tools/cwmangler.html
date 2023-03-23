@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../common.css" />
+    <script src="cwmangler.js"></script>
+</head>
+<body>
+
+    <h1>CodeWarrior C++ Symbol Mangler</h1>
+
+    <p>
+        This is a simple C++ symbol mangler which can mangle
+        C++ symbols.
+    </p>
+
+    <p>
+        Please note that this is not complete mangler and does not support
+        everything. Currently it does not support function pointers, templates
+        and return values.
+    </p>
+
+    <div>
+        <div class="TextBoxLabel">
+            C++ Symbol
+        </div>
+
+        <input type="text" class="TextBox" id="tbInput" onchange="mangle();" onKeypress="mangle();" onPaste="mangle();" onInput="mangle();" />
+    </div>
+
+    <p id="tbErrorMessage">
+        
+    </p>
+
+    <br>
+    <br>
+
+    <div>
+        <div class="TextBoxLabel">
+            Mangled symbol
+        </div>
+
+        <input type="text" class="TextBox" id="tbOutput" readonly />
+    </div>
+    
+</body>
+</html>
