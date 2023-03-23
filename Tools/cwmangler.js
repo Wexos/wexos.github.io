@@ -101,14 +101,23 @@ function mangleType(tokens) {
     }
 
     let keywords = "";
+    let keywordsSuffix = "";
     let type = "";
     let typeFound = false;
+    let isFirstToken = true;
 
     while (tokens.length > 0) {
         const token = tokens[0];
 
         if (token in TYPE_KEYWORDS) {
-            keywords += TYPE_KEYWORDS[token];
+            const keyword = TYPE_KEYWORDS[token];
+
+            if (isFirstToken && token == "const") {
+                keywordsSuffix += keyword;
+            }
+            else {
+                keywords += keyword;
+            }
         }
         else if (typeFound) {
             break;
@@ -119,15 +128,10 @@ function mangleType(tokens) {
         }
         
         tokens.shift();
+        isFirstToken = false;
     }
 
-    if (keywords.length > 1 && keywords[0] == 'C') {
-        // Not sure if this is fully correct, but it works in common cases
-        // if the const is specified before
-        keywords = `${keywords.slice(1, undefined)}C`;
-    }
-
-    return `${keywords}${mangleTypeName(type)}`
+    return `${keywords}${keywordsSuffix}${mangleTypeName(type)}`
 }
 
 function mangleName(tokens) {
@@ -198,9 +202,6 @@ function mangleFunction(tokens) {
             break;
         }
 
-        console.log(token);
-        console.log(tokens);
-
         switch (token) {
             case "const":
                 is_const_func = true
@@ -214,8 +215,6 @@ function mangleFunction(tokens) {
 
         tokens.pop();
     }
-
-    console.log(is_const_func);
 
     if (tokens.length == 0) {
         errorMessages.push("Expected ')', found nothing.");
