@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../common.css" />
+    <link rel="stylesheet" href="mogi_gpedit.css" />
+    <script src="../common.js"></script>
+    <script src="mogi_gpedit.js"></script>
+</head>
+<body>
+
+    <h1>MKW Lounge /gpedit</h1>
+
+    <p>
+        This is a simple tools which from a specified /ap command, can
+        create a /gpedit command.
+    </p>
+
+    <div>
+        <div class="TextBoxLabel">
+            Available Players (/ap)
+        </div>
+
+        <textarea id="tbAp" onChange="genTable();" onKeypress="genTable();" onPaste="genTable();" onInput="genTable();"></textarea>
+
+        <p id="tbApErrors">
+            
+        </p>
+    </div>
+
+    <br clear="all" />
+
+    <div>
+        <div class="TextBoxLabel">
+            GP Editor
+        </div>
+
+        <table id="tableGp" class="Table" width="60%">
+            <tr>
+                <th>Player ID</th>
+                <th>Lounge Name</th>
+                <th>Mii Name</th>
+                <th>Score</th>
+            </tr>
+        </table>
+    </div>
+
+    <br clear="all" />
+
+    <div>
+        <div class="TextBoxLabel">
+            Final Command
+        </div>
+
+        <input type="text" class="TextBox" id="tbCommand" readonly />
+    </div>
+    
+</body>
+</html>

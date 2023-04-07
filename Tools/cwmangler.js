@@ -16,14 +16,7 @@ function mangle() {
 
 function checkError() {
     const tbErrorMessage = document.getElementById("tbErrorMessage");
-
-    let betterMessages = [];
-
-    for (const message of errorMessages) {
-        betterMessages.push(`<span style="color:red">ERROR</span>: ${message}`)
-    }
-
-    tbErrorMessage.innerHTML = betterMessages.join("<br>");
+    createErrorString(errorMessages, tbErrorMessage);
 
     if (errorMessages.length > 0) {
         tbInput.classList.add("Error");

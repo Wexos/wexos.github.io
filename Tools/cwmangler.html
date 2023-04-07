@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="../common.css" />
+    <script src="../common.js"></script>
     <script src="cwmangler.js"></script>
 </head>
 <body>
@@ -24,15 +25,14 @@
             C++ Symbol
         </div>
 
-        <input type="text" class="TextBox" id="tbInput" onchange="mangle();" onKeypress="mangle();" onPaste="mangle();" onInput="mangle();" />
+        <input type="text" class="TextBox" id="tbInput" onChange="mangle();" onKeypress="mangle();" onPaste="mangle();" onInput="mangle();" />
     </div>
 
     <p id="tbErrorMessage">
         
     </p>
 
-    <br>
-    <br>
+    <br clear="all">
 
     <div>
         <div class="TextBoxLabel">

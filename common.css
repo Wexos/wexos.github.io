@@ -27,6 +27,20 @@
     border-color: #66F;
 }
 
+.Table {
+    border-collapse: collapse;
+}
+  
+td, th {
+    border: 1px solid #AAA;
+    padding: 6px;
+    font-size: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #DDD;
+}
+
 .Error {
     background-color: #F77;
 }
