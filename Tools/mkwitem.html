@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="../common.css" />
+    <link rel="stylesheet" href="mkwitem.css" />
+    <script src="mkwitem.js"></script>
+
+</head>
+<body onload="initTable();">
+
+    <h1>Interactive Mario Kart Wii Item Probablities</h1>
+
+    <p>
+        This is an interactive item probability table for Mario Kart Wii. You can
+        change the number of players as well as remove certain items, then showing
+        the probability if something can not be obtained.
+    </p>
+
+    <div>
+        <div class="TextBoxLabel">
+            Number of Players
+        </div>
+
+        <select id="selectPlayerCount" class="Select" onchange="updateTable();">
+
+        </select>
+    </div>
+
+    <br clear="all" />
+
+    <div>
+        <div class="TextBoxLabel">
+            Item Probablity Table
+        </div>
+
+        <table id="tableItem" class="Table" width="100%">
+            <tr>
+                <th></th>
+                <th><img src="../Images/Items/Green.png" title="Green Shell"/></th>
+                <th><img src="../Images/Items/Red.png" title="Red Shell" /></th>
+                <th><img src="../Images/Items/Banana.png" title="Banana" /></th>
+                <th><img src="../Images/Items/Fib.png" title="Fake Item Box" /></th>
+                <th><img src="../Images/Items/Mushroom.png" title="Mushroom" /></th>
+                <th><img src="../Images/Items/Mushroom3.png" title="Triple Mushrooms" /></th>
+                <th><img src="../Images/Items/Bomb.png" title="Bomb" /></th>
+                <th><img src="../Images/Items/Blue.png" title="Blue Shell" /></th>
+                <th><img src="../Images/Items/Lighting.png" title="Lighting" /></th>
+                <th><img src="../Images/Items/Star.png" title="Star" /></th>
+                <th><img src="../Images/Items/Golden.png" title="Golden Mushroom" /></th>
+                <th><img src="../Images/Items/Mega.png" title="Mega Mushroom" /></th>
+                <th><img src="../Images/Items/Blooper.png" title="Blooper" /></th>
+                <th><img src="../Images/Items/Pow.png" title="POW" /></th>
+                <th><img src="../Images/Items/Tc.png" title="Thunder Cloud" /></th>
+                <th><img src="../Images/Items/Bill.png" title="Bullet Bill" /></th>
+                <th><img src="../Images/Items/Green3.png" title="Triple Greens" /></th>
+                <th><img src="../Images/Items/Red3.png" title="Triple Reds" /></th>
+                <th><img src="../Images/Items/Banana3.png" title="Triple Bananas" /></th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

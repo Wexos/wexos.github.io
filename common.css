@@ -41,6 +41,11 @@ tr:nth-child(even) {
     background-color: #DDD;
 }
 
+.Select {
+    height: 40px;
+    font-size: 20px;
+}
+
 .Error {
     background-color: #F77;
 }
