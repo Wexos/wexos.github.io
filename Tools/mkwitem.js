@@ -1,22 +1,6 @@
 function initTable() {
-    const tableElem = document.getElementById("tableItem");
-
-    // Create table
-    for (const item of ITEM_INFO) {
-        const columnElem = document.createElement("th");
-        const imgElem = document.createElement("img");
-
-        columnElem.onclick = (e) => toggleItem(e.target);
-
-        imgElem.src = `../Images/Items/${item[0]}`;
-        imgElem.style.maxWidth = "64px";
-        imgElem.style.width = "100%";
-        imgElem.style.height = "100%";
-        imgElem.title = item[1];
-
-        columnElem.appendChild(imgElem);
-        tableElem.rows[0].appendChild(columnElem);
-    }
+    createTable("tableItem");
+    createTable("tableAvail");
 
     // Player count options
     const playerSelectElem = document.getElementById("selectPlayerCount");
@@ -34,8 +18,30 @@ function initTable() {
     updateTable();
 }
 
+function createTable(tableName) {
+    const tableElem = document.getElementById(tableName);
+
+    // Create table
+    for (const item of ITEM_INFO) {
+        const columnElem = document.createElement("th");
+        const imgElem = document.createElement("img");
+
+        columnElem.onclick = (e) => toggleItem(e.target);
+
+        imgElem.src = `../Images/Items/${item[0]}`;
+        imgElem.style.maxWidth = "64px";
+        imgElem.style.width = "100%";
+        imgElem.style.height = "100%";
+        imgElem.title = item[1];
+
+        columnElem.appendChild(imgElem);
+        tableElem.rows[0].appendChild(columnElem);
+    }
+}
+
 function updateTable() {
-    const tableElem = document.getElementById("tableItem");
+    const tableItemElem = document.getElementById("tableItem");
+    const tableAvailElem = document.getElementById("tableAvail");
 
     const playerSelectElem = document.getElementById("selectPlayerCount");
     const playerCount = playerSelectElem.value;
@@ -45,7 +51,7 @@ function updateTable() {
 
     // Check what items are disabled
     for (let i = 0; i < ITEM_COUNT; i++) {
-        const columnElem = tableElem.rows[0].cells[i + 1];
+        const columnElem = tableItemElem.rows[0].cells[i + 1];
 
         if (columnElem.children[0].classList.contains("ITEM_DISABLED")) {
             for (let j = 0; j < items.length; j++) {
@@ -89,14 +95,18 @@ function updateTable() {
     }
 
     // Delete old rows
-    while (tableElem.rows.length > 1) {
-        tableElem.deleteRow(-1);
+    while (tableItemElem.rows.length > 1) {
+        tableItemElem.deleteRow(-1);
     }
 
-    // Create table
+    while (tableAvailElem.rows.length > 1) {
+        tableAvailElem.deleteRow(-1);
+    }
+
+    // Create item table
     for (let i = 0; i < items.length; i++) {
         const rowElem = document.createElement("tr");
-        tableElem.appendChild(rowElem);
+        tableItemElem.appendChild(rowElem);
 
         const posElem = document.createElement("td");   
         rowElem.appendChild(posElem);
@@ -132,7 +142,29 @@ function updateTable() {
                 }
             }
         }
-    } 
+    }
+
+    // Create availability table
+    for (let i = 0; i < ITEM_AVAILABILITY.length; i++) {
+        const rowElem = document.createElement("tr");
+        tableAvailElem.appendChild(rowElem);
+
+        const typeElem = document.createElement("td");
+        rowElem.appendChild(typeElem);
+        
+        typeElem.innerHTML = ITEM_AVAILABILITY[i][0];
+
+        for (let j = 0; j < ITEM_COUNT; j++) {
+            const itemElem = document.createElement("td");
+            rowElem.appendChild(itemElem);
+            
+            itemElem.style.textAlign = "right";
+
+            if (ITEM_AVAILABILITY[i][1][j] != null) {
+                itemElem.innerHTML = ITEM_AVAILABILITY[i][1][j].toString();
+            }
+        }
+    }
 }
 
 function toggleItem(elem) {
@@ -249,6 +281,12 @@ const ITEM_TABLE = {
         [   0,   0,    0,   0,    0,    5,   0,   0,  20, 17.5, 22.5,   0,   0,   0,   0,   35,   0,   0,    0]
     ]
 };
+
+const ITEM_AVAILABILITY = [
+    ["Max",             [  12,    8,   16,    6,   12, null,    3,    1,  1,    3,    2,    2,  1,  1,    1,    1, null, null, null]],
+    ["First Available", [null, null, null, null, null, null, null,   30, 30, null, null, null, 15, 20, null, null, null, null, null]],
+    ["Cooldown",        [null, null, null, null, null, null, null, null, 30, null, null, null, 15, 20, null, null, null, null, null]]    
+];
 
 const ITEM_INFO = [
     ["Green.png",     "Green Shell"],

@@ -42,8 +42,8 @@ tr:nth-child(even) {
 }
 
 .Select {
-    height: 40px;
-    font-size: 20px;
+    height: 32px;
+    font-size: 16px;
 }
 
 .Error {
