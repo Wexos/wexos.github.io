@@ -15,7 +15,34 @@ function initTable() {
 
     playerSelectElem.value = 10;
 
+    // Item probability options
+    const itemElem = document.getElementById("selectItem");
+
+    for (let i = 0; i < ITEM_INFO.length; i++) {
+        const item = ITEM_INFO[i];
+
+        const optionElem = document.createElement("option");
+        optionElem.style.backgroundImage = `url(../Images/Items/${item[0]});`;
+        optionElem.setAttribute("value", i);
+        optionElem.innerHTML = item[1];
+
+        itemElem.appendChild(optionElem);
+    }
+
+    const boxCountElem = document.getElementById("selectBoxCount");
+
+    for (let i = 1; i <= 10; i++) {
+        const optionElem = document.createElement("option");
+        optionElem.setAttribute("value", i);
+        optionElem.innerHTML = i;
+
+        boxCountElem.appendChild(optionElem);
+    }
+
+    updatePositionSelect();
+
     updateTable();
+    updateItemProbability();
 }
 
 function createTable(tableName) {
@@ -122,7 +149,7 @@ function updateTable() {
                 itemElem.style.backgroundColor = "black";
             }
             else {
-                const itemPerc = Math.round(items[i][j] * 10) / 10;
+                const itemPerc = roundDecimals(items[i][j], 1);
 
                 itemElem.innerHTML = `${itemPerc}%`;
                 itemElem.style.textAlign = "right";
@@ -165,6 +192,41 @@ function updateTable() {
             }
         }
     }
+    
+    updateItemProbability();
+}
+
+function updatePositionSelect() {
+    const positionCount = document.getElementById("selectPosition");
+    const playerCount = document.getElementById("selectPlayerCount");
+    
+    while (positionCount.children.length > 0) {
+        positionCount.children[0].remove();
+    }
+
+    for (let i = 1; i <= playerCount.value; i++) {
+        const optionElem = document.createElement("option");
+        optionElem.setAttribute("value", i);
+        optionElem.innerHTML = i;
+
+        positionCount.appendChild(optionElem);
+    }
+}
+
+function updateItemProbability() {
+    const item = parseInt(document.getElementById("selectItem").value);
+    const boxCount = document.getElementById("selectBoxCount").value;
+    const position = parseInt(document.getElementById("selectPosition").value) - 1;
+    
+    const itemProb = getItemProbability(item, position);
+    let prob = 0;
+
+    for (let i = 0; i < boxCount; i++) {
+        prob += itemProb * Math.pow(1 - itemProb, i);
+    }
+
+    const tbProb = document.getElementById("tbItemProbability");
+    tbProb.value = `${roundDecimals(prob * 100, 1)}%`;
 }
 
 function toggleItem(elem) {
@@ -176,6 +238,20 @@ function toggleItem(elem) {
     }
 
     updateTable();
+}
+
+function getItemProbability(item, position) {
+    const tableItem = document.getElementById("tableItem");
+    let itemProbStr = tableItem.rows[1 + position].cells[1 + item].innerHTML;
+    
+    if (itemProbStr == "") {
+        itemProbStr = "0";
+    }
+    else if (itemProbStr.endsWith("%")) {
+        itemProbStr = itemProbStr.substring(0, itemProbStr.length - 1); 
+    }
+    
+    return parseInt(itemProbStr) / 100;
 }
 
 const ITEM_COUNT = 19;
@@ -302,7 +378,7 @@ const ITEM_INFO = [
     ["Golden.png",    "Golden Mushroom"],
     ["Mega.png",      "Mega Mushroom"],
     ["Blooper.png",   "Blooper"],
-    ["Pow.png",       "POW"],
+    ["Pow.png",       "POW Block"],
     ["Tc.png",        "Thunder Cloud"],
     ["Bill.png",      "Bullet Bill"],
     ["Green3.png",    "Triple Green Shells"],

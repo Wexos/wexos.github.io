@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="mkwitem.css" />
+    <script src="../common.js"></script>
     <script src="mkwitem.js"></script>
 
 </head>
@@ -22,17 +23,13 @@
             Number of Players
         </div>
 
-        <select id="selectPlayerCount" class="Select" onchange="updateTable();">
+        <select id="selectPlayerCount" class="Select" onchange="updateTable(); updatePositionSelect();">
 
         </select>
     </div>
 
-    <br clear="all" />
-
     <div>
-        <div class="TextBoxLabel">
-            Item Probablities
-        </div>
+        <h2>Item Probablity</h2>
 
         <p>
             Click on an item to display the table assuming the clicked item is unavailable.
@@ -45,12 +42,8 @@
         </table>
     </div>
 
-    <br clear="all" />
-
     <div>
-        <div class="TextBoxLabel">
-            Item Availability
-        </div>
+        <h2>Item Availability</h2>
 
         <p>
             Table which shows the maximum number of total items which can be held, timer when items are first available as well as
@@ -62,6 +55,58 @@
                 <th></th>
             </tr>
         </table>
+    </div>
+
+    <div>
+        <h2>Probability of item <i>x</i> in <i>n</i> boxes</h2>
+
+        <p>
+            Calculates the probability of obtaining a specific item in a specified number of boxes. Item unavailability is based on the first table.
+        </p>
+
+        <div>
+            <div class="TextBoxLabel">
+                Item
+            </div>
+
+            <select id="selectItem" class="Select" onchange="updateItemProbability();">
+    
+            </select>
+        </div>
+
+        <br clear="all" />
+        
+        <div>
+            <div class="TextBoxLabel">
+                Position
+            </div>
+
+            <select id="selectPosition" class="Select" onchange="updateItemProbability();">
+    
+            </select>
+        </div>
+
+        <br clear="all" />
+        
+        <div>
+            <div class="TextBoxLabel">
+                Number of Boxes
+            </div>
+
+            <select id="selectBoxCount" class="Select" onchange="updateItemProbability();">
+                
+            </select>
+        </div>
+
+        <br clear="all" />
+
+        <div>
+            <div class="TextBoxLabel">
+                Probability
+            </div>
+
+            <input type="text" class="TextBox" id="tbItemProbability" readonly />
+        </div>
     </div>
 </body>
 </html>

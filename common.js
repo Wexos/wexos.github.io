@@ -7,3 +7,9 @@ function createErrorString(errorMessages, tbErrors) {
 
     tbErrors.innerHTML = betterMessages.join("<br>");
 }
+
+function roundDecimals(value, decimals) {
+    pow = Math.pow(10, decimals);
+
+    return Math.round(value * pow) / pow;
+}
