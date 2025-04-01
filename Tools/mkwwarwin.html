@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mario Kart Wii War Win Calculator</title>
+
+    <link rel="stylesheet" href="../common.css" />
+    <link rel="stylesheet" href="mkwwarwin.css" />
+    <script src="../common.js"></script>
+    <script src="mkwwarwin.js"></script>
+</head>
+<body onload="updateTable();">
+
+    <h1>Mario Kart Wii War Win Calculator</h1>
+
+    <p>
+        Wonder which spots are required to win a war going into last race? Look no further!
+    </p>
+
+    <p>
+        Specify how many points you are down (or up by setting a negative value) in war, and then the magic will happen.
+    </p>
+
+    <div>
+        <div class="TextBoxLabel">
+            Losing By
+        </div>
+
+        <input id="inputScore" type="text" class="TextBox" id="tbInput" onChange="updateTable();" onKeypress="updateTable();" onPaste="updateTable();" onInput="updateTable();" />
+    </div>
+
+    <br />
+    
+    <table id="tableSpots" class="Table" width="100%">
+        <tr>
+            <th>Spots</th>
+            <th>Score</th>
+            <th>Win?</th>
+        </tr>
+    </table>
+    
+</body>
+</html>
